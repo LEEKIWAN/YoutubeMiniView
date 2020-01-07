@@ -15,24 +15,12 @@ class PlayListViewController: UIViewController {
     let writerList = ["Steve Jobs", "ㅎㅇ", "First"]
     let viewCountList = ["조회수 9.3천회", "조회수 10.3만회", "조회수 2천회"]
     
+    var playViewController: PlayViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 
@@ -63,5 +51,20 @@ extension PlayListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let playViewController = playViewController {
+            playViewController.maximizeVideoView()
+        }
+        else {
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            playViewController = storyBoard.instantiateViewController(identifier: "PlayViewController") as? PlayViewController
+            playViewController?.modalPresentationStyle = .overCurrentContext
+            self.present(playViewController!, animated: true) {
+                self.playViewController = nil
+            }
+        }
+        
     }
 }

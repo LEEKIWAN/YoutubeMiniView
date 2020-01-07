@@ -11,6 +11,7 @@
 		8380881423C2FA5C00D553E5 /* StaticVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8380881323C2FA5C00D553E5 /* StaticVariable.swift */; };
 		8380881723C3068B00D553E5 /* UIPanGestureRecognizer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8380881623C3068B00D553E5 /* UIPanGestureRecognizer+.swift */; };
 		8380881923C316CD00D553E5 /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8380881823C316CD00D553E5 /* PassthroughView.swift */; };
+		8380881B23C41CC700D553E5 /* VideoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8380881A23C41CC700D553E5 /* VideoContainerView.swift */; };
 		83CF2A9F23BF109000FB060B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF2A9E23BF109000FB060B /* AppDelegate.swift */; };
 		83CF2AA123BF109000FB060B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF2AA023BF109000FB060B /* SceneDelegate.swift */; };
 		83CF2AA323BF109000FB060B /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF2AA223BF109000FB060B /* PlayViewController.swift */; };
@@ -26,6 +27,7 @@
 		8380881323C2FA5C00D553E5 /* StaticVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticVariable.swift; sourceTree = "<group>"; };
 		8380881623C3068B00D553E5 /* UIPanGestureRecognizer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+.swift"; sourceTree = "<group>"; };
 		8380881823C316CD00D553E5 /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
+		8380881A23C41CC700D553E5 /* VideoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoContainerView.swift; sourceTree = "<group>"; };
 		83CF2A9B23BF109000FB060B /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83CF2A9E23BF109000FB060B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83CF2AA023BF109000FB060B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				83CF2AA923BF109300FB060B /* LaunchScreen.storyboard */,
 				83CF2AAC23BF109300FB060B /* Info.plist */,
 				8380881323C2FA5C00D553E5 /* StaticVariable.swift */,
+				8380881A23C41CC700D553E5 /* VideoContainerView.swift */,
 				8380881823C316CD00D553E5 /* PassthroughView.swift */,
 				8380881523C3066F00D553E5 /* Extension */,
 			);
@@ -174,6 +177,7 @@
 			files = (
 				83CF2AA323BF109000FB060B /* PlayViewController.swift in Sources */,
 				83CF2AB523BF29E900FB060B /* YouTubeListTableViewCell.swift in Sources */,
+				8380881B23C41CC700D553E5 /* VideoContainerView.swift in Sources */,
 				8380881923C316CD00D553E5 /* PassthroughView.swift in Sources */,
 				833C7B4223BF2B140049A904 /* PlayListViewController.swift in Sources */,
 				83CF2AB323BF129D00FB060B /* YouTubeTableViewCell.swift in Sources */,

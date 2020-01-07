@@ -11,8 +11,7 @@ import UIKit
 
 class StaticVariable {
     
-    static let videoHeight: CGFloat = 230
-//    static let defaultVideoWidth: CGFloat = 375
+    static var videoHeight: CGFloat = 230
     
-    static let miniVideoHeight: CGFloat = 80
+    static var miniVideoHeight: CGFloat = 80
 }

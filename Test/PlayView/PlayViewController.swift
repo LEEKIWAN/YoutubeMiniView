@@ -27,35 +27,58 @@ class PlayViewController: UIViewController {
     let writerList = ["Steve Jobs", "ㅎㅇ", "First"]
     let viewCountList = ["조회수 9.3천회", "조회수 10.3만회", "조회수 2천회"]
     
-    @IBOutlet weak var videoView: UIView!
+    fileprivate var heightDictionary: [Int : CGFloat] = [:]
+
+    
+    @IBOutlet weak var videoView: VideoContainerView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var popupView: UIView!
     
     var playerLayer: AVPlayerLayer!
     
+    var videoNatureSize: CGSize = CGSize()
+    var updatedVideoSize: CGSize = CGSize()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.initPlayer()
+        self.initPlayer()
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onPanGestureRecognizer(_:)))
         videoView.addGestureRecognizer(panGesture)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTapGestureRecognizer(_:)))
         videoView.addGestureRecognizer(tapGesture)
+        
+        if let delegatingView = self.view as? PassthroughView {
+            delegatingView.touchDelegate = presentingViewController?.view
+        }
+        
     }
     
     func initPlayer() {
-        let playItem = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
-        let player = AVPlayer(url: playItem!)
-        playerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = self.videoView.bounds
-        self.videoView.layer.addSublayer(playerLayer)
+        let avPlayer = AVPlayer(url: URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!)
+        let castedLayer = videoView.layer as! AVPlayerLayer
+        castedLayer.videoGravity = .resizeAspectFill
+        castedLayer.player = avPlayer
+        avPlayer.play()
         
-        player.play()
+        let videoAssetSource = avPlayer.currentItem!.asset
+        let videoTrack = videoAssetSource.tracks(withMediaType: AVMediaType.video)[0]
+        videoNatureSize = videoTrack.naturalSize
+        
+        setResizeVideoView(videoSize: videoNatureSize, v_width: self.videoView.frame.size.width)
+        self.consVideoHeight.constant = updatedVideoSize.height
+        StaticVariable.videoHeight = updatedVideoSize.height
     }
     
-    override func viewDidLayoutSubviews() {
-//        playerLayer.frame = self.videoView.bounds
+    func setResizeVideoView(videoSize: CGSize, v_width: CGFloat){
+        let oldWidth = videoSize.width
+        let scaleFactor = v_width / oldWidth
+
+        let newHeight = videoSize.height * scaleFactor
+        let newWidth = oldWidth * scaleFactor
+        
+        self.updatedVideoSize = CGSize(width: newWidth, height: newHeight)
     }
     
     var videoState: VideoState = .max
@@ -89,6 +112,8 @@ class PlayViewController: UIViewController {
             else {
                 panGestureDirection = .horizontal
             }
+            
+            
         case .changed:
             if panGestureDirection == .vertical {
                 if videoState == .max {
@@ -137,13 +162,12 @@ class PlayViewController: UIViewController {
                         consVideoRightMargin.constant = 0
                     }
                     
-                    print(deltaY , self.view.frame.size.height / 5)
                 }
                 else {
                     let deltaY = location.y - firstLocation.y
                     if deltaY > 0 {
                         minimizeVideoView()
-                        break
+                        return
                     }
                     
                     var margin = 10 + deltaY / 40
@@ -173,31 +197,39 @@ class PlayViewController: UIViewController {
                     consTop.constant = topMargin
                     
                     var videoHeight = StaticVariable.miniVideoHeight - deltaY / 4.5
-                    if videoHeight > 230 {
-                        videoHeight = 230
+                    if videoHeight > StaticVariable.videoHeight {
+                        videoHeight = StaticVariable.videoHeight
                     }
-                    
                     consVideoHeight.constant = videoHeight
-                    
                 }
-                
-                
             }
         case .ended:
             let deltaY = location.y - firstLocation.y
+            let direction = gesture.direction
             
-            if velocity.y > 200 || (velocity.y >= 0 && self.view.frame.size.height / 5 < deltaY) {
+            if velocity.y > 100 || (velocity.y >= 0 && self.view.frame.size.height / 5 < deltaY) {
+                self.minimizeVideoView()
+            }
+            else if velocity.y < -200 {
+                self.maximizeVideoView()
+            }
+            else if deltaY >= -100 && deltaY < 0 {
+                self.minimizeVideoView()
+            }
+            else if (location.y > 700) {
                 self.minimizeVideoView()
             }
             else {
                 self.maximizeVideoView()
             }
+            
+
+
         default:
-            self.maximizeVideoView()
             break
         }
     }
-    
+    // MARK: - Video Min & Max
     func minimizeVideoView() {
         UIView.animate(withDuration: 0.2, animations: {
             self.consTop.constant = self.maxTopMargin
@@ -235,7 +267,6 @@ class PlayViewController: UIViewController {
     // MARK: - TouchEvent
     @IBAction func onCloseTouched(_ sender: UIButton) {
         self.dismiss(animated: false) {
-            
         }
     }
     
@@ -243,7 +274,6 @@ class PlayViewController: UIViewController {
     func onTapGestureRecognizer(_ gesture: UITapGestureRecognizer) {
         maximizeVideoView()
     }
-        
 }
 
 extension PlayViewController: UITableViewDataSource, UITableViewDelegate {
@@ -273,5 +303,14 @@ extension PlayViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heightDictionary[indexPath.row] = cell.frame.size.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let height = heightDictionary[indexPath.row]
+        return height ?? UITableView.automaticDimension
     }
 }
