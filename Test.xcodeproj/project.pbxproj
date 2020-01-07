@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		833C7B4223BF2B140049A904 /* PlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833C7B4123BF2B140049A904 /* PlayListViewController.swift */; };
-		83BBBE3D23BF37D400B89A7F /* PlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83BBBE3C23BF37D400B89A7F /* PlayView.xib */; };
+		8380881423C2FA5C00D553E5 /* StaticVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8380881323C2FA5C00D553E5 /* StaticVariable.swift */; };
+		8380881723C3068B00D553E5 /* UIPanGestureRecognizer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8380881623C3068B00D553E5 /* UIPanGestureRecognizer+.swift */; };
+		8380881923C316CD00D553E5 /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8380881823C316CD00D553E5 /* PassthroughView.swift */; };
 		83CF2A9F23BF109000FB060B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF2A9E23BF109000FB060B /* AppDelegate.swift */; };
 		83CF2AA123BF109000FB060B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF2AA023BF109000FB060B /* SceneDelegate.swift */; };
-		83CF2AA323BF109000FB060B /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF2AA223BF109000FB060B /* PlayView.swift */; };
+		83CF2AA323BF109000FB060B /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF2AA223BF109000FB060B /* PlayViewController.swift */; };
 		83CF2AA623BF109000FB060B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CF2AA423BF109000FB060B /* Main.storyboard */; };
 		83CF2AA823BF109300FB060B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CF2AA723BF109300FB060B /* Assets.xcassets */; };
 		83CF2AAB23BF109300FB060B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CF2AA923BF109300FB060B /* LaunchScreen.storyboard */; };
@@ -21,11 +23,13 @@
 
 /* Begin PBXFileReference section */
 		833C7B4123BF2B140049A904 /* PlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListViewController.swift; sourceTree = "<group>"; };
-		83BBBE3C23BF37D400B89A7F /* PlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayView.xib; sourceTree = "<group>"; };
+		8380881323C2FA5C00D553E5 /* StaticVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticVariable.swift; sourceTree = "<group>"; };
+		8380881623C3068B00D553E5 /* UIPanGestureRecognizer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+.swift"; sourceTree = "<group>"; };
+		8380881823C316CD00D553E5 /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
 		83CF2A9B23BF109000FB060B /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83CF2A9E23BF109000FB060B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83CF2AA023BF109000FB060B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		83CF2AA223BF109000FB060B /* PlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
+		83CF2AA223BF109000FB060B /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		83CF2AA523BF109000FB060B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		83CF2AA723BF109300FB060B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83CF2AAA23BF109300FB060B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -45,10 +49,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8380881523C3066F00D553E5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8380881623C3068B00D553E5 /* UIPanGestureRecognizer+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		83BBBE3B23BF37C000B89A7F /* PlayView */ = {
 			isa = PBXGroup;
 			children = (
-				83BBBE3C23BF37D400B89A7F /* PlayView.xib */,
+				83CF2AA223BF109000FB060B /* PlayViewController.swift */,
 			);
 			path = PlayView;
 			sourceTree = "<group>";
@@ -76,13 +88,15 @@
 				83CF2AB423BF29E900FB060B /* YouTubeListTableViewCell.swift */,
 				83CF2A9E23BF109000FB060B /* AppDelegate.swift */,
 				83CF2AA023BF109000FB060B /* SceneDelegate.swift */,
-				83CF2AA423BF109000FB060B /* Main.storyboard */,
-				83CF2AA223BF109000FB060B /* PlayView.swift */,
 				833C7B4123BF2B140049A904 /* PlayListViewController.swift */,
+				83CF2AA423BF109000FB060B /* Main.storyboard */,
 				83BBBE3B23BF37C000B89A7F /* PlayView */,
 				83CF2AA723BF109300FB060B /* Assets.xcassets */,
 				83CF2AA923BF109300FB060B /* LaunchScreen.storyboard */,
 				83CF2AAC23BF109300FB060B /* Info.plist */,
+				8380881323C2FA5C00D553E5 /* StaticVariable.swift */,
+				8380881823C316CD00D553E5 /* PassthroughView.swift */,
+				8380881523C3066F00D553E5 /* Extension */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -147,7 +161,6 @@
 			files = (
 				83CF2AAB23BF109300FB060B /* LaunchScreen.storyboard in Resources */,
 				83CF2AA823BF109300FB060B /* Assets.xcassets in Resources */,
-				83BBBE3D23BF37D400B89A7F /* PlayView.xib in Resources */,
 				83CF2AA623BF109000FB060B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,12 +172,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83CF2AA323BF109000FB060B /* PlayView.swift in Sources */,
+				83CF2AA323BF109000FB060B /* PlayViewController.swift in Sources */,
 				83CF2AB523BF29E900FB060B /* YouTubeListTableViewCell.swift in Sources */,
+				8380881923C316CD00D553E5 /* PassthroughView.swift in Sources */,
 				833C7B4223BF2B140049A904 /* PlayListViewController.swift in Sources */,
 				83CF2AB323BF129D00FB060B /* YouTubeTableViewCell.swift in Sources */,
+				8380881423C2FA5C00D553E5 /* StaticVariable.swift in Sources */,
 				83CF2A9F23BF109000FB060B /* AppDelegate.swift in Sources */,
 				83CF2AA123BF109000FB060B /* SceneDelegate.swift in Sources */,
+				8380881723C3068B00D553E5 /* UIPanGestureRecognizer+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
